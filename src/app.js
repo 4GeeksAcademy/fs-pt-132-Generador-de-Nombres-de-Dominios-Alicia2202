@@ -12,7 +12,7 @@ window.onload = function() {
 
 let pronoun = ['the', 'our'];
 let adj = ['great', 'big'];
-let noun = ['jogger', 'racoon'];
+let noun = ['jogger', 'racoon','traves', 'heroes', 'genio', 'studio', 'telecom', 'microcom'];
 let dom = ['.com', '.es', '.io'];
 
 pronoun.forEach(i =>{
