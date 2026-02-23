@@ -12,26 +12,34 @@ window.onload = function () {
   let noun = ['jogger', 'racoon', 'traves', 'heroes', 'genio', 'studio', 'telecom', 'microcom'];
   let dom = ['.com', '.es', '.io'];
 
-  pronoun.forEach(i => {
-    adj.forEach(j => {
-      noun.forEach(k => {
-        dom.forEach(l => {
-          console.log(`${i}${j}${k}${l}`)
+  const createDomains = (pronoun, adj, noun, dom) => {
+    return `${pronoun}${adj}${noun}${dom}`
+  };
 
-          //Para quitar el punto de la extensión 
-          let extensionPura = l.substring(1);
-          //Condicional si el noun termina en el dominio sin el punto (extensionPura)
-          if (k.endsWith(extensionPura)){
-            //Creamos una variable en el que cortemos el noun desde el inicio hasta lo que coincide con el dominio
-            let nounShort = k.substring(0, k.length - extensionPura.length);
-            //Concatenamos todo junto con el nombre cortado más el dominio
-            console.log(`${i}${j}${nounShort}${l}`);
+  const applyDomainHack = (pronoun, adj, noun, dom) => {
+    //Quita el punto de la extensión
+    let extensionPura = dom.substring(1);
+    if (noun.endsWith(extensionPura)) {
+      //Creamos una variable en el que cortemos el noun desde el inicio hasta lo que coincide con el dominio
+      let nounShort = noun.substring(0, noun.length - extensionPura.length);
+      return `${pronoun}${adj}${nounShort}${dom}`
+    };
+  };
 
-          }
-        })
-      })
-    })
-  })
-  
+  const buildDomain = (pronoun, adj, noun, dom) => {
+    pronoun.forEach(i => {
+      adj.forEach(j => {
+        noun.forEach(k => {
+          dom.forEach(l => {
+            const domain =
+              applyDomainHack(i, j, k, l) || createDomains(i, j, k, l);
+
+            console.log(domain);
+
+          });
+        });
+      });
+    });
+  };
+  console.log(buildDomain(pronoun, adj, noun, dom));
 };
-
