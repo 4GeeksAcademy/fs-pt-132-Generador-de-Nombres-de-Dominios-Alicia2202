@@ -41,5 +41,5 @@ window.onload = function () {
       });
     });
   };
-  console.log(buildDomain(pronoun, adj, noun, dom));
+  buildDomain(pronoun, adj, noun, dom);
 };
